@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Users, Settings, Search, Phone, Video, MoreHorizontal, Mic, Camera, Paperclip, Smile, Star, Volume2, Bell, Shield, Globe, MapPin, Calendar, Archive, Pin, Forward, Reply, Edit3, Trash2, Download, Share2, Heart, ThumbsUp, Eye, Clock, Zap, Filter, SortAsc } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -44,7 +45,7 @@ const Index = () => {
       id: '1',
       user: 'Priya Sharma',
       avatar: 'https://images.unsplash.com/photo-1494790108755-2616b2e071e2?w=100&h=100&fit=crop&crop=face',
-      content: 'नमस्ते सभी! आज कैसा दिन है? How is everyone doing today?',
+      content: 'Hello everyone! How is your day going?',
       timestamp: new Date(Date.now() - 1000 * 60 * 30),
       isOwn: false,
       type: 'text',
@@ -55,7 +56,7 @@ const Index = () => {
       id: '2',
       user: 'You (Rahul)',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
-      content: 'बहुत अच्छा! Working on some exciting projects. Great weather in Mumbai today! ☀️',
+      content: 'Great! Working on some exciting projects. Beautiful weather in Mumbai today! ☀️',
       timestamp: new Date(Date.now() - 1000 * 60 * 25),
       isOwn: true,
       type: 'text',
@@ -77,7 +78,7 @@ const Index = () => {
       id: '4',
       user: 'You (Rahul)',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
-      content: 'Absolutely! Productivity is at its peak today. Anyone up for a virtual chai break? ☕',
+      content: 'Absolutely! Productivity is at its peak today. Anyone up for a virtual coffee break? ☕',
       timestamp: new Date(Date.now() - 1000 * 60 * 15),
       isOwn: true,
       type: 'text',
@@ -158,7 +159,7 @@ const Index = () => {
       id: '1',
       name: 'Tech Enthusiasts India 🇮🇳',
       avatar: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=100&h=100&fit=crop',
-      lastMessage: 'Priya: नमस्ते सभी! आज कैसा दिन है?',
+      lastMessage: 'Priya: Hello everyone! How is your day going?',
       time: '2 min ago',
       unread: 4,
       isGroup: true,
@@ -169,7 +170,7 @@ const Index = () => {
       id: '2',
       name: 'Family Group 👨‍👩‍👧‍👦',
       avatar: 'https://images.unsplash.com/photo-1511895426328-dc8714eeea42?w=100&h=100&fit=crop',
-      lastMessage: 'Mummy: Khana kha liya?',
+      lastMessage: 'Mom: Have you had lunch?',
       time: '1 hour ago',
       unread: 2,
       isGroup: true,
@@ -219,12 +220,12 @@ const Index = () => {
       setTimeout(() => {
         setIsTyping(false);
         const responses = [
-          "That's interesting! मुझे और बताइए।",
-          "I completely agree with you! बिल्कुल सही कहा।",
-          "Thanks for sharing that. धन्यवाद!",
-          "Great point! मैंने इस तरह नहीं सोचा था।",
-          "Awesome! शानदार! 🎉",
-          "Very helpful information. बहुत उपयोगी जानकारी।"
+          "That's interesting! Tell me more about it.",
+          "I completely agree with you! Absolutely right.",
+          "Thanks for sharing that. Much appreciated!",
+          "Great point! I hadn't thought of it that way.",
+          "Awesome! Amazing! 🎉",
+          "Very helpful information. Really useful to know."
         ];
         const randomResponse = responses[Math.floor(Math.random() * responses.length)];
         const responseMessage: Message = {
@@ -243,7 +244,7 @@ const Index = () => {
   };
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('en-IN', { 
+    return date.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
       minute: '2-digit', 
       hour12: true 
@@ -284,21 +285,38 @@ const Index = () => {
     }));
   };
 
+  const handleCameraClick = () => {
+    console.log('Camera button clicked');
+    // Create a file input for camera
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.capture = 'environment';
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        console.log('Camera photo taken:', file);
+        // Handle the captured photo here
+      }
+    };
+    input.click();
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <div className="flex h-screen">
-        {/* Enhanced Sidebar */}
-        <div className="w-96 bg-white/95 backdrop-blur-xl border-r border-orange-200 flex flex-col shadow-xl">
-          {/* Header with Indian branding */}
-          <div className="p-4 border-b border-orange-100 bg-gradient-to-r from-orange-500 to-green-600">
+        {/* Professional Sidebar */}
+        <div className="w-96 bg-white/95 backdrop-blur-xl border-r border-gray-200 flex flex-col shadow-xl">
+          {/* Header */}
+          <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-indigo-600">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-orange-600 font-bold text-lg">🇮🇳</span>
+                  <span className="text-blue-600 font-bold text-lg">💬</span>
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-white">BharatChat</h1>
-                  <p className="text-orange-100 text-xs">Connect India, Connect Hearts</p>
+                  <h1 className="text-xl font-bold text-white">ChatPro</h1>
+                  <p className="text-blue-100 text-xs">Professional Communication</p>
                 </div>
               </div>
               <div className="flex space-x-1">
@@ -322,7 +340,7 @@ const Index = () => {
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex border-b border-orange-100">
+          <div className="flex border-b border-gray-200">
             {[
               { id: 'chats', label: 'Chats', icon: Users },
               { id: 'status', label: 'Status', icon: Eye },
@@ -333,8 +351,8 @@ const Index = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex-1 flex items-center justify-center space-x-2 py-3 text-sm font-medium transition-colors ${
                   activeTab === tab.id 
-                    ? 'text-orange-600 border-b-2 border-orange-600 bg-orange-50' 
-                    : 'text-gray-600 hover:text-orange-600'
+                    ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50' 
+                    : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
                 }`}
               >
                 <tab.icon className="h-4 w-4" />
@@ -344,7 +362,7 @@ const Index = () => {
           </div>
 
           {/* Active Users */}
-          <div className="p-4 border-b border-orange-100">
+          <div className="p-4 border-b border-gray-200">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
               <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
               Active Now ({users.filter(u => u.status === 'online').length})
@@ -355,7 +373,7 @@ const Index = () => {
                   <div className="relative">
                     <Avatar className="h-12 w-12 border-2 border-green-500">
                       <AvatarImage src={user.avatar} />
-                      <AvatarFallback className="bg-gradient-to-r from-orange-500 to-green-500 text-white text-xs">
+                      <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs">
                         {user.name.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
@@ -374,16 +392,16 @@ const Index = () => {
           {/* Conversations List */}
           <div className="flex-1 overflow-y-auto">
             {conversations.map((conv) => (
-              <div key={conv.id} className="flex items-center space-x-3 p-4 hover:bg-orange-50 cursor-pointer border-b border-orange-50 transition-colors">
+              <div key={conv.id} className="flex items-center space-x-3 p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 transition-colors">
                 <div className="relative">
                   <Avatar className="h-12 w-12">
                     <AvatarImage src={conv.avatar} />
-                    <AvatarFallback className="bg-gradient-to-r from-orange-500 to-green-500 text-white">
+                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
                       {conv.name.substring(0, 2)}
                     </AvatarFallback>
                   </Avatar>
                   {conv.isPinned && (
-                    <Pin className="absolute -top-1 -right-1 w-4 h-4 text-orange-600" />
+                    <Pin className="absolute -top-1 -right-1 w-4 h-4 text-blue-600" />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -391,7 +409,7 @@ const Index = () => {
                     <p className="text-sm font-medium text-gray-900 truncate flex items-center">
                       {conv.name}
                       {conv.isGroup && (
-                        <Badge variant="secondary" className="ml-2 text-xs bg-orange-100 text-orange-700">
+                        <Badge variant="secondary" className="ml-2 text-xs bg-blue-100 text-blue-700">
                           {conv.members}
                         </Badge>
                       )}
@@ -401,7 +419,7 @@ const Index = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-xs text-gray-600 truncate">{conv.lastMessage}</p>
                     {conv.unread > 0 && (
-                      <Badge className="bg-green-600 text-white text-xs">
+                      <Badge className="bg-blue-600 text-white text-xs">
                         {conv.unread}
                       </Badge>
                     )}
@@ -414,13 +432,13 @@ const Index = () => {
 
         {/* Main Chat Area */}
         <div className="flex-1 flex flex-col">
-          {/* Enhanced Chat Header */}
-          <div className="bg-white/95 backdrop-blur-xl border-b border-orange-200 p-4 shadow-sm">
+          {/* Chat Header */}
+          <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 p-4 shadow-sm">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=100&h=100&fit=crop" />
-                  <AvatarFallback className="bg-gradient-to-r from-orange-500 to-green-500 text-white">
+                  <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
                     TI
                   </AvatarFallback>
                 </Avatar>
@@ -441,38 +459,38 @@ const Index = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-orange-100">
+                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-gray-100">
                   <Search className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-orange-100">
+                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-gray-100">
                   <Phone className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-orange-100">
+                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-gray-100">
                   <Video className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-orange-100">
+                <Button variant="ghost" size="icon" className="text-gray-600 hover:bg-gray-100">
                   <MoreHorizontal className="h-5 w-5" />
                 </Button>
               </div>
             </div>
           </div>
 
-          {/* Enhanced Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-orange-25 to-green-25">
+          {/* Messages Area */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-50 to-white">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.isOwn ? 'justify-end' : 'justify-start'}`}>
                 <div className={`flex items-start space-x-3 max-w-lg ${message.isOwn ? 'flex-row-reverse space-x-reverse' : ''}`}>
                   <Avatar className="h-8 w-8 flex-shrink-0">
                     <AvatarImage src={message.avatar} />
-                    <AvatarFallback className="bg-gradient-to-r from-orange-500 to-green-500 text-white text-xs">
+                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs">
                       {message.user.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
                   <div className={`flex flex-col ${message.isOwn ? 'items-end' : 'items-start'}`}>
                     <div className={`relative px-4 py-2 rounded-2xl shadow-sm ${
                       message.isOwn 
-                        ? 'bg-gradient-to-r from-orange-500 to-green-600 text-white' 
-                        : 'bg-white border border-orange-100 text-gray-900'
+                        ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' 
+                        : 'bg-white border border-gray-200 text-gray-900'
                     }`}>
                       <p className="text-sm leading-relaxed">{message.content}</p>
                       {message.isStarred && (
@@ -487,7 +505,7 @@ const Index = () => {
                           <button
                             key={idx}
                             onClick={() => handleReaction(message.id, reaction.emoji)}
-                            className="flex items-center space-x-1 bg-white rounded-full px-2 py-1 shadow-sm border border-orange-100 hover:bg-orange-50 transition-colors"
+                            className="flex items-center space-x-1 bg-white rounded-full px-2 py-1 shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors"
                           >
                             <span className="text-xs">{reaction.emoji}</span>
                             <span className="text-xs text-gray-600">{reaction.users.length}</span>
@@ -514,22 +532,22 @@ const Index = () => {
               </div>
             ))}
             
-            {/* Enhanced typing indicator */}
+            {/* Typing indicator */}
             {isTyping && (
               <div className="flex justify-start">
                 <div className="flex items-start space-x-3 max-w-xs lg:max-w-md">
                   <Avatar className="h-8 w-8 flex-shrink-0">
                     <AvatarImage src="https://images.unsplash.com/photo-1494790108755-2616b2e071e2?w=100&h=100&fit=crop&crop=face" />
-                    <AvatarFallback className="bg-gradient-to-r from-orange-500 to-green-500 text-white text-xs">
+                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs">
                       PS
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col items-start">
-                    <div className="px-4 py-2 rounded-2xl bg-white border border-orange-100 shadow-sm">
+                    <div className="px-4 py-2 rounded-2xl bg-white border border-gray-200 shadow-sm">
                       <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                        <div className="w-2 h-2 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                       </div>
                     </div>
                     <span className="text-xs text-gray-500 mt-1">Priya is typing...</span>
@@ -540,15 +558,15 @@ const Index = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Enhanced Message Input */}
-          <div className="bg-white/95 backdrop-blur-xl border-t border-orange-200 p-4">
+          {/* Message Input */}
+          <div className="bg-white/95 backdrop-blur-xl border-t border-gray-200 p-4">
             <form onSubmit={handleSendMessage} className="flex items-center space-x-3">
               <div className="flex space-x-2">
                 <Button 
                   type="button" 
                   variant="ghost" 
                   size="icon" 
-                  className="text-gray-600 hover:bg-orange-100"
+                  className="text-gray-600 hover:bg-gray-100"
                   onClick={() => setShowMediaGallery(true)}
                 >
                   <Paperclip className="h-5 w-5" />
@@ -557,7 +575,7 @@ const Index = () => {
                   type="button" 
                   variant="ghost" 
                   size="icon" 
-                  className="text-gray-600 hover:bg-orange-100"
+                  className="text-gray-600 hover:bg-gray-100"
                   onClick={() => setShowVoiceRecorder(true)}
                 >
                   <Mic className="h-5 w-5" />
@@ -566,7 +584,8 @@ const Index = () => {
                   type="button" 
                   variant="ghost" 
                   size="icon" 
-                  className="text-gray-600 hover:bg-orange-100"
+                  className="text-gray-600 hover:bg-gray-100"
+                  onClick={handleCameraClick}
                 >
                   <Camera className="h-5 w-5" />
                 </Button>
@@ -576,14 +595,14 @@ const Index = () => {
                 <Input
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  placeholder="Type your message... टाइप करें..."
-                  className="pl-4 pr-16 py-3 bg-gray-50 border-gray-200 text-gray-900 rounded-full focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  placeholder="Type your message..."
+                  className="pl-4 pr-16 py-3 bg-gray-50 border-gray-200 text-gray-900 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 <Button 
                   type="button" 
                   variant="ghost" 
                   size="icon" 
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600 hover:bg-orange-100"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600 hover:bg-gray-100"
                   onClick={() => setShowEmojiPicker(!showEmojiPicker)}
                 >
                   <Smile className="h-5 w-5" />
@@ -592,7 +611,7 @@ const Index = () => {
               
               <Button 
                 type="submit" 
-                className="bg-gradient-to-r from-orange-500 to-green-600 hover:from-orange-600 hover:to-green-700 text-white rounded-full p-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full p-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
                 disabled={!newMessage.trim()}
               >
                 <Send className="h-5 w-5" />

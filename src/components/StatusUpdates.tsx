@@ -28,15 +28,15 @@ export const StatusUpdates = () => {
   ];
 
   return (
-    <div className="fixed top-20 right-4 bg-white rounded-2xl shadow-xl border border-orange-200 p-4 w-64 z-40">
+    <div className="fixed top-20 right-4 bg-white rounded-2xl shadow-xl border border-gray-200 p-4 w-64 z-40">
       <h3 className="font-semibold text-gray-900 mb-3">Status Updates</h3>
       <div className="space-y-3">
         {statusUpdates.map(status => (
-          <div key={status.id} className="flex items-center space-x-3 cursor-pointer hover:bg-orange-50 p-2 rounded-lg">
+          <div key={status.id} className="flex items-center space-x-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg">
             <div className="relative">
               <Avatar className={`h-10 w-10 ${status.hasNew ? 'ring-2 ring-green-500' : ''}`}>
                 <AvatarImage src={status.avatar} />
-                <AvatarFallback className="bg-gradient-to-r from-orange-500 to-green-500 text-white text-xs">
+                <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs">
                   {status.name.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>

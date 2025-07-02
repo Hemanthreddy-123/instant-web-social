@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Shield, Globe, MapPin, Calendar, Archive, Filter, SortAsc, Download, Share2, Zap, Volume2, Eye, Star, Forward, Reply, Edit3, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,7 +8,7 @@ export const ChatFeatures = () => {
 
   const features = [
     { id: 1, name: 'End-to-End Encryption', icon: Shield, desc: 'Secure messaging with military-grade encryption' },
-    { id: 2, name: 'Multi-language Support', icon: Globe, desc: 'Chat in Hindi, English, Tamil, Bengali & 20+ languages' },
+    { id: 2, name: 'Multi-language Support', icon: Globe, desc: 'Chat in multiple languages with auto-translation' },
     { id: 3, name: 'Location Sharing', icon: MapPin, desc: 'Share your location with precision' },
     { id: 4, name: 'Schedule Messages', icon: Calendar, desc: 'Send messages at specific times' },
     { id: 5, name: 'Auto Archive', icon: Archive, desc: 'Automatically archive old conversations' },
@@ -31,7 +30,7 @@ export const ChatFeatures = () => {
     return (
       <Button
         onClick={() => setShowFeatures(true)}
-        className="fixed bottom-4 right-4 bg-gradient-to-r from-orange-500 to-green-600 hover:from-orange-600 hover:to-green-700 text-white rounded-full shadow-lg z-50"
+        className="fixed bottom-4 right-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full shadow-lg z-50"
       >
         View 34 Features
       </Button>
@@ -42,15 +41,15 @@ export const ChatFeatures = () => {
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">BharatChat - 34 Advanced Features</h2>
+          <h2 className="text-2xl font-bold text-gray-900">ChatPro - 34 Advanced Features</h2>
           <Button onClick={() => setShowFeatures(false)} variant="ghost">×</Button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((feature) => (
-            <div key={feature.id} className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+            <div key={feature.id} className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
               <div className="flex items-center space-x-3 mb-2">
-                <feature.icon className="h-6 w-6 text-orange-600" />
+                <feature.icon className="h-6 w-6 text-blue-600" />
                 <h3 className="font-semibold text-gray-900">{feature.name}</h3>
               </div>
               <p className="text-sm text-gray-600">{feature.desc}</p>
@@ -58,44 +57,35 @@ export const ChatFeatures = () => {
             </div>
           ))}
           
-          {/* Additional Indian-specific features */}
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          {/* Additional professional features */}
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
-              <span className="text-2xl">🇮🇳</span>
-              <h3 className="font-semibold text-gray-900">Indian Festival Stickers</h3>
+              <span className="text-2xl">🎨</span>
+              <h3 className="font-semibold text-gray-900">Custom Themes</h3>
             </div>
-            <p className="text-sm text-gray-600">Special stickers for Diwali, Holi, Eid, Christmas</p>
+            <p className="text-sm text-gray-600">Personalize your chat experience with themes</p>
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">💰</span>
-              <h3 className="font-semibold text-gray-900">UPI Integration</h3>
+              <h3 className="font-semibold text-gray-900">Payment Integration</h3>
             </div>
-            <p className="text-sm text-gray-600">Send money instantly through UPI</p>
+            <p className="text-sm text-gray-600">Send money instantly through secure payments</p>
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🎵</span>
-              <h3 className="font-semibold text-gray-900">Bollywood Music Sharing</h3>
+              <h3 className="font-semibold text-gray-900">Music Sharing</h3>
             </div>
-            <p className="text-sm text-gray-600">Share your favorite Bollywood tracks</p>
+            <p className="text-sm text-gray-600">Share your favorite music tracks</p>
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
-            <div className="flex items-center space-x-3 mb-2">
-              <span className="text-2xl">🏏</span>
-              <h3 className="font-semibold text-gray-900">Live Cricket Scores</h3>
-            </div>
-            <p className="text-sm text-gray-600">Get live cricket updates in chat</p>
-            <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
-          </div>
-          
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🛡️</span>
               <h3 className="font-semibold text-gray-900">Family Safety Mode</h3>
@@ -104,7 +94,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">📱</span>
               <h3 className="font-semibold text-gray-900">Cross-Platform Sync</h3>
@@ -113,7 +103,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🌙</span>
               <h3 className="font-semibold text-gray-900">Night Mode</h3>
@@ -122,7 +112,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🔔</span>
               <h3 className="font-semibold text-gray-900">Smart Notifications</h3>
@@ -131,7 +121,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">📞</span>
               <h3 className="font-semibold text-gray-900">HD Video Calls</h3>
@@ -140,7 +130,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">💼</span>
               <h3 className="font-semibold text-gray-900">Business Mode</h3>
@@ -149,7 +139,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🎮</span>
               <h3 className="font-semibold text-gray-900">In-Chat Games</h3>
@@ -158,7 +148,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">📚</span>
               <h3 className="font-semibold text-gray-900">Study Groups</h3>
@@ -167,16 +157,16 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🌡️</span>
-              <h3 className="font-semibold text-gray-  900">Weather Updates</h3>
+              <h3 className="font-semibold text-gray-900">Weather Updates</h3>
             </div>
             <p className="text-sm text-gray-600">Get local weather in your chats</p>
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🚗</span>
               <h3 className="font-semibold text-gray-900">Travel Mode</h3>
@@ -185,7 +175,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🤖</span>
               <h3 className="font-semibold text-gray-900">AI Assistant</h3>
@@ -194,7 +184,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">💾</span>
               <h3 className="font-semibold text-gray-900">Cloud Backup</h3>
@@ -203,7 +193,7 @@ export const ChatFeatures = () => {
             <Badge className="mt-2 bg-green-100 text-green-800">Active</Badge>
           </div>
           
-          <div className="p-4 border border-orange-200 rounded-lg hover:bg-orange-50 transition-colors">
+          <div className="p-4 border border-gray-200 rounded-lg hover:bg-blue-50 transition-colors">
             <div className="flex items-center space-x-3 mb-2">
               <span className="text-2xl">🎯</span>
               <h3 className="font-semibold text-gray-900">Message Analytics</h3>
