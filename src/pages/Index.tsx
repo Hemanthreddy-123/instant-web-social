@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Users, Settings, Search, Phone, Video, MoreHorizontal, Mic, Camera, Paperclip, Smile, Star, Volume2, Bell, Shield, Globe, MapPin, Calendar, Archive, Pin, Forward, Reply, Edit3, Trash2, Download, Share2, Heart, ThumbsUp, Eye, Clock, Zap, Filter, SortAsc } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { ChatFeatures } from '@/components/ChatFeatures';
 import { MediaGallery } from '@/components/MediaGallery';
 import { VoiceRecorder } from '@/components/VoiceRecorder';
-import { StatusUpdates } from '@/components/StatusUpdates';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -40,6 +39,7 @@ interface User {
 }
 
 const Index = () => {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -157,7 +157,7 @@ const Index = () => {
   const conversations = [
     {
       id: '1',
-      name: 'Tech Enthusiasts India 🇮🇳',
+      name: 'Tech Team Global',
       avatar: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=100&h=100&fit=crop',
       lastMessage: 'Priya: Hello everyone! How is your day going?',
       time: '2 min ago',
@@ -168,9 +168,9 @@ const Index = () => {
     },
     {
       id: '2',
-      name: 'Family Group 👨‍👩‍👧‍👦',
+      name: 'Project Alpha',
       avatar: 'https://images.unsplash.com/photo-1511895426328-dc8714eeea42?w=100&h=100&fit=crop',
-      lastMessage: 'Mom: Have you had lunch?',
+      lastMessage: 'Team: Meeting at 3 PM today',
       time: '1 hour ago',
       unread: 2,
       isGroup: true,
@@ -179,9 +179,9 @@ const Index = () => {
     },
     {
       id: '3',
-      name: 'College Friends Mumbai',
+      name: 'Design Squad',
       avatar: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=100&h=100&fit=crop',
-      lastMessage: 'Weekend plan?',
+      lastMessage: 'New mockups ready for review',
       time: '3 hours ago',
       unread: 0,
       isGroup: true,
@@ -303,24 +303,29 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50">
       <div className="flex h-screen">
         {/* Professional Sidebar */}
         <div className="w-96 bg-white/95 backdrop-blur-xl border-r border-gray-200 flex flex-col shadow-xl">
           {/* Header */}
-          <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-indigo-600">
+          <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-slate-700 to-gray-800">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-bold text-lg">💬</span>
+                  <span className="text-slate-700 font-bold text-lg">💼</span>
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-white">ChatPro</h1>
-                  <p className="text-blue-100 text-xs">Professional Communication</p>
+                  <h1 className="text-xl font-bold text-white">ProConnect</h1>
+                  <p className="text-gray-200 text-xs">Professional Workspace</p>
                 </div>
               </div>
               <div className="flex space-x-1">
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-white hover:bg-white/20"
+                  onClick={() => navigate('/settings')}
+                >
                   <Settings className="h-5 w-5" />
                 </Button>
                 <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
@@ -342,17 +347,20 @@ const Index = () => {
           {/* Navigation Tabs */}
           <div className="flex border-b border-gray-200">
             {[
-              { id: 'chats', label: 'Chats', icon: Users },
-              { id: 'status', label: 'Status', icon: Eye },
-              { id: 'calls', label: 'Calls', icon: Phone }
+              { id: 'chats', label: 'Chats', icon: Users, path: '/' },
+              { id: 'status', label: 'Status', icon: Eye, path: '/status' },
+              { id: 'calls', label: 'Calls', icon: Phone, path: '/calls' }
             ].map(tab => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  if (tab.path !== '/') navigate(tab.path);
+                }}
                 className={`flex-1 flex items-center justify-center space-x-2 py-3 text-sm font-medium transition-colors ${
                   activeTab === tab.id 
-                    ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50' 
-                    : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                    ? 'text-slate-700 border-b-2 border-slate-700 bg-slate-50' 
+                    : 'text-gray-600 hover:text-slate-700 hover:bg-gray-50'
                 }`}
               >
                 <tab.icon className="h-4 w-4" />
@@ -364,21 +372,21 @@ const Index = () => {
           {/* Active Users */}
           <div className="p-4 border-b border-gray-200">
             <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              Active Now ({users.filter(u => u.status === 'online').length})
+              <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></div>
+              Online ({users.filter(u => u.status === 'online').length})
             </h3>
             <div className="flex space-x-3 overflow-x-auto pb-2">
               {users.filter(u => u.status === 'online').map((user) => (
                 <div key={user.id} className="flex-shrink-0 text-center">
                   <div className="relative">
-                    <Avatar className="h-12 w-12 border-2 border-green-500">
+                    <Avatar className="h-12 w-12 border-2 border-emerald-500">
                       <AvatarImage src={user.avatar} />
-                      <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs">
+                      <AvatarFallback className="bg-gradient-to-r from-slate-600 to-gray-700 text-white text-xs">
                         {user.name.split(' ').map(n => n[0]).join('')}
                       </AvatarFallback>
                     </Avatar>
                     {user.isVerified && (
-                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-slate-600 rounded-full flex items-center justify-center">
                         <span className="text-white text-xs">✓</span>
                       </div>
                     )}
@@ -396,12 +404,12 @@ const Index = () => {
                 <div className="relative">
                   <Avatar className="h-12 w-12">
                     <AvatarImage src={conv.avatar} />
-                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
+                    <AvatarFallback className="bg-gradient-to-r from-slate-600 to-gray-700 text-white">
                       {conv.name.substring(0, 2)}
                     </AvatarFallback>
                   </Avatar>
                   {conv.isPinned && (
-                    <Pin className="absolute -top-1 -right-1 w-4 h-4 text-blue-600" />
+                    <Pin className="absolute -top-1 -right-1 w-4 h-4 text-slate-600" />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -409,7 +417,7 @@ const Index = () => {
                     <p className="text-sm font-medium text-gray-900 truncate flex items-center">
                       {conv.name}
                       {conv.isGroup && (
-                        <Badge variant="secondary" className="ml-2 text-xs bg-blue-100 text-blue-700">
+                        <Badge variant="secondary" className="ml-2 text-xs bg-slate-100 text-slate-700">
                           {conv.members}
                         </Badge>
                       )}
@@ -419,7 +427,7 @@ const Index = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-xs text-gray-600 truncate">{conv.lastMessage}</p>
                     {conv.unread > 0 && (
-                      <Badge className="bg-blue-600 text-white text-xs">
+                      <Badge className="bg-slate-700 text-white text-xs">
                         {conv.unread}
                       </Badge>
                     )}
@@ -438,23 +446,23 @@ const Index = () => {
               <div className="flex items-center space-x-4">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=100&h=100&fit=crop" />
-                  <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
-                    TI
+                  <AvatarFallback className="bg-gradient-to-r from-slate-600 to-gray-700 text-white">
+                    TT
                   </AvatarFallback>
                 </Avatar>
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900 flex items-center">
-                    Tech Enthusiasts India 🇮🇳
-                    <Badge className="ml-2 bg-green-100 text-green-800 text-xs">
+                    Tech Team Global
+                    <Badge className="ml-2 bg-emerald-100 text-emerald-800 text-xs">
                       Verified
                     </Badge>
                   </h2>
                   <div className="flex items-center space-x-4 text-sm text-gray-600">
                     <span className="flex items-center">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full mr-1"></div>
                       156 members, 12 online
                     </span>
-                    <span>📍 All India</span>
+                    <span>🌐 Global Team</span>
                   </div>
                 </div>
               </div>
@@ -482,14 +490,14 @@ const Index = () => {
                 <div className={`flex items-start space-x-3 max-w-lg ${message.isOwn ? 'flex-row-reverse space-x-reverse' : ''}`}>
                   <Avatar className="h-8 w-8 flex-shrink-0">
                     <AvatarImage src={message.avatar} />
-                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs">
+                    <AvatarFallback className="bg-gradient-to-r from-slate-600 to-gray-700 text-white text-xs">
                       {message.user.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
                   <div className={`flex flex-col ${message.isOwn ? 'items-end' : 'items-start'}`}>
                     <div className={`relative px-4 py-2 rounded-2xl shadow-sm ${
                       message.isOwn 
-                        ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white' 
+                        ? 'bg-gradient-to-r from-slate-600 to-gray-700 text-white' 
                         : 'bg-white border border-gray-200 text-gray-900'
                     }`}>
                       <p className="text-sm leading-relaxed">{message.content}</p>
@@ -523,7 +531,7 @@ const Index = () => {
                         <div className="flex items-center space-x-1">
                           {message.status === 'sent' && <Clock className="w-3 h-3 text-gray-400" />}
                           {message.status === 'delivered' && <span className="text-gray-400">✓</span>}
-                          {message.status === 'read' && <span className="text-green-500">✓✓</span>}
+                          {message.status === 'read' && <span className="text-emerald-500">✓✓</span>}
                         </div>
                       )}
                     </div>
@@ -538,16 +546,16 @@ const Index = () => {
                 <div className="flex items-start space-x-3 max-w-xs lg:max-w-md">
                   <Avatar className="h-8 w-8 flex-shrink-0">
                     <AvatarImage src="https://images.unsplash.com/photo-1494790108755-2616b2e071e2?w=100&h=100&fit=crop&crop=face" />
-                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs">
+                    <AvatarFallback className="bg-gradient-to-r from-slate-600 to-gray-700 text-white text-xs">
                       PS
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col items-start">
                     <div className="px-4 py-2 rounded-2xl bg-white border border-gray-200 shadow-sm">
                       <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
                       </div>
                     </div>
                     <span className="text-xs text-gray-500 mt-1">Priya is typing...</span>
@@ -596,7 +604,7 @@ const Index = () => {
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Type your message..."
-                  className="pl-4 pr-16 py-3 bg-gray-50 border-gray-200 text-gray-900 rounded-full focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="pl-4 pr-16 py-3 bg-gray-50 border-gray-200 text-gray-900 rounded-full focus:ring-2 focus:ring-slate-500 focus:border-transparent"
                 />
                 <Button 
                   type="button" 
@@ -611,7 +619,7 @@ const Index = () => {
               
               <Button 
                 type="submit" 
-                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full p-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-slate-600 to-gray-700 hover:from-slate-700 hover:to-gray-800 text-white rounded-full p-3 transition-all duration-200 transform hover:scale-105 shadow-lg"
                 disabled={!newMessage.trim()}
               >
                 <Send className="h-5 w-5" />
@@ -641,7 +649,6 @@ const Index = () => {
       <ChatFeatures />
       {showMediaGallery && <MediaGallery onClose={() => setShowMediaGallery(false)} />}
       {showVoiceRecorder && <VoiceRecorder onClose={() => setShowVoiceRecorder(false)} />}
-      <StatusUpdates />
     </div>
   );
 };
